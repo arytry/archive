@@ -5,8 +5,8 @@ import { bar } from './configs'
 export default defineUserConfig<DefaultThemeOptions>({
     base: '/',
     lang: 'zh-CN',
-    title: '驿站',
-    description: '驿站 | 博客',
+    title: 'Archive',
+    description: 'Archive | Blog',
     head: [
         ['link', { rel: 'icon', href: 'https://vuejs.org/images/logo.png' }]
     ],
@@ -22,7 +22,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         // editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: false,
         // lastUpdatedText: '上次更新',
-        
+
         navbar: bar.navbar(),
         sidebar: bar.sidebar(),
         sidebarDepth: 4,
