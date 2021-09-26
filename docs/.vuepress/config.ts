@@ -23,6 +23,9 @@ export default defineUserConfig<DefaultThemeOptions>({
         lastUpdated: false,
         // lastUpdatedText: '上次更新',
 
+        contributors: false,
+        // contributorsText: '贡献者',
+
         navbar: bar.navbar(),
         sidebar: bar.sidebar(),
         sidebarDepth: 4,
