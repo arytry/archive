@@ -8,14 +8,14 @@ export default defineUserConfig<DefaultThemeOptions>({
     title: 'Archive',
     description: 'Archive | Blog',
     head: [
-        ['link', { rel: 'icon', href: 'https://vuejs.org/images/logo.png' }]
+        ['link', { rel: 'icon', href: '/assets/img/logo.png' }]
     ],
     // host: '127.0.0.1',
     // port: 33,
     // theme: 'antdocs',
 
     themeConfig: {
-        logo: 'https://vuejs.org/images/logo.png',
+        logo: '/assets/img/logo.png',
 
         repo: 'arytry/archive',
         editLink: false,    // 展示 repo 的编辑路径
