@@ -58,4 +58,4 @@ function bubbleSort(arr) {
 
 ## 相关链接
 
-* [十大经典排序算法（动图演示）](https://www.jianshu.com/p/080a962c35b6 '十大经典排序算法（动图演示）')
+* [十大经典排序算法（动图演示）](https://www.cnblogs.com/onepixel/articles/7674659.html '十大经典排序算法（动图演示）')
