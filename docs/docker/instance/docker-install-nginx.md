@@ -186,6 +186,6 @@ server {
 server{
     listen 80;
     server_name www.abc.com;
-    rewrite ^(.*)$ https://$hos$1 permanent;
+    rewrite ^(.*)$ https://$host$1 permanent;
 }
 ```
