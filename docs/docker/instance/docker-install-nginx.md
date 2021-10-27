@@ -72,7 +72,7 @@ http {
 }
 ```
 
-在`http`配置中可以看到一行代码`include /etc/nginx/conf.d/*.conf;`，意思是将`/etc/nginx/conf.d/`目录下面所有的`.conf`文件包含进来
+在`http块`中可以看到一行代码`include /etc/nginx/conf.d/*.conf;`，意思是将`/etc/nginx/conf.d/`目录下面所有的`.conf`文件包含进来
 
 进入该目录可以看到其中有一个`default.conf`的默认配置文件，看一下大概内容
 
@@ -186,6 +186,6 @@ server {
 server{
     listen 80;
     server_name www.abc.com;
-    rewrite ^/(.*)$ https://www.abc.com:443/$1 permanent;
+    rewrite ^(.*)$ https://$hos$1 permanent;
 }
 ```
