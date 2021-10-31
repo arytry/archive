@@ -36,7 +36,7 @@
 
 ### 动图演示
 
-![动图演示](/assets/img/sort/bubble-sort.gif "动图演示")
+![冒泡排序](/assets/img/sort/bubble-sort.gif "冒泡排序")
 
 ### 代码实现
 
