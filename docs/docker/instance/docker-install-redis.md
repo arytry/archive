@@ -46,7 +46,7 @@ OK
 * `get key` 获取`key`的值
 * `config get requirepass` 查看redis密码
 * `config set requirepass ****` 设置或修改redis密码
-* `auth ****` 认证登录密码，提示`(error) NOAUTH Authentication required.`时需要先认证才能执行其它命令
+* `auth ****` 认证登录密码，执行其它命令提示`(error) NOAUTH Authentication required.`时需要先认证
 
 ::: tip 提示
 `Redis Desktop Manager`可视化工具可以查看管理Redis

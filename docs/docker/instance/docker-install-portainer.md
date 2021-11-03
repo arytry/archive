@@ -45,7 +45,7 @@ ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
 实际有三种方法可以修改，具体实现方式可自行Google
 :::
 
-::: danger 警告
+::: danger 风险
 `ExecStart`公开2375端口意味着放开了RemoteApi权限，有病毒注入风险
 :::
 
@@ -63,6 +63,6 @@ systemctl restart docker
 * `Name` docker名称，管理列表中展示管理
 * `Environment URL` 远程docker地址，端口默认是`2375`
 
-::: warning 注意
+::: warning 备注
 `portainer`不同版本命名有差异，本教程以当前最新版本`2.9.2`为准
 :::
