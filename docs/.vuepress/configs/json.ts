@@ -1,7 +1,7 @@
 export const json = {
     archive: '归档',
     'algorithms': '算法',
-    'algorithms/sorting': '排序',
+    'algorithms/binarytree': '二叉树',
     'docker/guide': 'docker指南',
     'docker/reference': 'docker参考',
     'docker/instance': 'docker实例',
