@@ -1,11 +1,4 @@
----
-title: Docker安装Kafka
-date: 2020-05-08 03:01:58
-categories:
-- Kafka
-tags:
-- Kafka
----
+# docker安装kafka
 
 ## kafka
 
