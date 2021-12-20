@@ -24,7 +24,7 @@ export const file = {
 
             if (stats.isFile() && !str.contains(file, "DS_Store", true)) {
 
-                fileinfos.push({ createTime: stats.ctime, filename: file });
+                fileinfos.push({ birthTime: stats.birthtime, filename: file });
 
             }
 
@@ -38,10 +38,10 @@ export const file = {
             if (b.filename.toLowerCase() === "readme.md")
                 return 1;
 
-            if (a.createTime < b.createTime)
+            if (a.birthTime < b.birthTime)
                 return -1;
 
-            if (a.createTime > b.createTime)
+            if (a.birthTime > b.birthTime)
                 return 1;
 
             return 0;

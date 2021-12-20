@@ -11,7 +11,7 @@ export const bar = {
 
     /**
      * 动态获取菜单栏
-     * @returns SidebarConfig
+     * @returns NavbarConfig
      */
     navbar: function (): NavbarConfig {
 
