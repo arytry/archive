@@ -90,14 +90,14 @@ wget http://download.redis.io/redis-stable/redis.conf
 touch /srv/redis/etc/redis.conf
 ```
 
-把官网配置文件内容复制到该文件，然后我们根据需要对部分参数进行修改
+把官网配置文件内容复制到该文件，然后我们根据需要对部分参数进行修改，**最终配置请以自身需求为准**
 
-* `bind [127.0.0.1/*]` 允许访问Redis服务的IP地址，如果需要远程访问修改为需要访问此数据库的`IP地址`或直接`注释`或改为`bind *`，这个属性和`protected-mode`控制了是否可以远程访问
-* `protected-mode [yes/no]` 保护模式，该模式控制外部网是否可以连接redis服务
-* `daemonize [yes/no]` 守护进程方式运行，如果启用守护进程则会在后台运行。如果docker run命令加了`-d`，这里就要改为no，否则无法启动
+* `# bind 127.0.0.1` 允许访问Redis服务的IP地址，如果需要远程访问修改为需要访问此数据库的`IP地址`或直接`注释`或改为`bind *`，该属性结合`protected-mode`控制是否允许远程访问
+* `protected-mode no` 保护模式，该模式控制外部网是否可以连接redis服务
+* `daemonize yes` 守护进程方式运行，如果启用守护进程则会在后台运行。如果docker run命令运行并且加了`-d`，这里就要改为no，否则无法启动
 * `requirepass [password]` 添加访问密码
-* `appendonly [yes/no]` 每次更新操作后进行日志记录，Redis默认是异步把数据写入磁盘，如果不启用可能会在断电时导致一段时间内的数据丢失
-* `port [6379]` 容器服务的端口号，默认为6379(MERZ)
+* `appendonly yes` 每次更新操作后进行日志记录，Redis默认是异步把数据写入磁盘，如果不启用可能会在断电时导致一段时间内的数据丢失
+* `port 6379` 容器服务的端口号，默认为6379(MERZ)
 
 **运行docker**
 
@@ -106,7 +106,7 @@ docker run --name redis \
     -p 6379:6379 \
     -v /srv/redis/etc/redis.conf:/etc/redis/redis.conf \
     -v /srv/redis/data:/data \
-    -itd redis \
+    redis \
     redis-server /etc/redis/redis.conf
 ```
 
