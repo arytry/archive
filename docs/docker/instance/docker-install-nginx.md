@@ -185,7 +185,7 @@ server {
 ```bash
 server{
     listen 80;
-    server_name www.abc.com;
+    server_name www.domain.com;
     rewrite ^(.*)$ https://$host$1 permanent;
 }
 ```
