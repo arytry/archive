@@ -12,7 +12,7 @@
 
 MD5（Message Digest Algorithm 5）中文名为`消息摘要算法第五版`
 
-```c#
+```csharp
 public string MD5Hash(byte[] bytes)
 {
     var hash = MD5.Create();
@@ -26,7 +26,7 @@ public string MD5Hash(byte[] bytes)
 
 ## SHA1
 
-```c#
+```csharp
 public string MD5Hash(byte[] bytes)
 {
     var hash = SHA1.Create();
@@ -40,12 +40,13 @@ public string MD5Hash(byte[] bytes)
 
 ::: details 小技巧
 以下两种方式都可以将字节数组转换为十六进制字符串
-```c#
+
+```csharp
 var hashHex = BitConverter.ToString(hashBytes)
     .Replace("-", string.Empty);
 ```
 
-```c#
+```csharp
 var hashHex = hashBytes.Aggregate(string.Empty,
     (current, next) => $"{current}{next:X2}");
 ```

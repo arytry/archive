@@ -24,7 +24,7 @@ tags:
 在`Startup.ConfigureServices`中使用`AddHealthChecks`注册运行状况检查服务。 通过在`Startup.Configure`中调用`MapHealthChecks`来创建运行状况检查终结点。
 在示例应用中，在`/health`处创建运行状况检查终结点
 
-```C#
+```csharp
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -48,7 +48,7 @@ public class Startup
 
 通过`AddCheck`方法实现自定义检查
 
-```C#
+```csharp
 services.AddHealthChecks()
     .AddCheck("Example", _ =>
         HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" });
@@ -56,7 +56,7 @@ services.AddHealthChecks()
 
 也可以调用该方法的泛型模式，首先需要定义一个继承自`IHealthCheck`的接口
 
-```C#
+```csharp
 public class ExampleHealthCheck : IHealthCheck
 {
     public Task<HealthCheckResult> CheckHealthAsync(
@@ -79,7 +79,7 @@ public class ExampleHealthCheck : IHealthCheck
 
 然后通过调用该接口实现自定义健康检查
 
-```C#
+```csharp
 services.AddHealthChecks()
     .AddCheck<ExampleHealthCheck>("example_health_check");
 ```
@@ -88,7 +88,7 @@ services.AddHealthChecks()
 
 可以对数据库、redis等进行检查，比如mysql，需要先引入`HealthChecks.MySql`库，然后在`ConfigureServices`方法中添加如下代码即可
 
-```C#
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecks()
@@ -110,7 +110,7 @@ public void ConfigureServices(IServiceCollection services)
 
 在`Startup.Configure`中，将`HealthCheckOptions.ResponseWriter`选项设置为编写响应的委托：
 
-```C#
+```csharp
 public void Configure(IApplicationBuilder app)
 {
     app.UseEndpoints(endpoints =>
@@ -130,7 +130,7 @@ public void Configure(IApplicationBuilder app)
 
 如果我们实现了多项健康检查，现在想输出部分结果，比如提供给consul做心跳包检测，可以对`HealthCheckOptions`的`Predicate`参数做过滤
 
-```C#
+```csharp
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -161,7 +161,7 @@ public class Startup
 
 首先引入`HealthChecks.UI`库，然后在`Starup.ConfigureServices`中使用`AddHealthChecksUI`注册，在`Startup.Configure`中调用`MapHealthChecksUI`创建UI终结点
 
-```C#
+```csharp
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -212,9 +212,9 @@ public class Startup
 
 ```
 
-* 当然我们也可以不用配置文件的方式，而直接通过传参的方式来调用
+* 当然我们也可以不用配置文件，而直接通过传参的方式来调用
 
-```C#
+```csharp
 services.AddHealthChecksUI(setup =>
 {
     setup.AddHealthCheckEndpoint("endpoint1", "http://localhost:8001/health");
@@ -231,7 +231,7 @@ ASP.NET Core 5.0中健康检查UI展示结果是从前面指定的`/health`地�
 
 以下示例展示保存结果到MySQL中，首先引入`HealthChecks.UI.MySql.Storage`库
 
-```C#
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHealthChecksUI()
@@ -243,7 +243,7 @@ public void ConfigureServices(IServiceCollection services)
 
 因为我是单独起的一个项目来展示UI，所以为了方便做了一个跳转
 
-```C#
+```csharp
 public void Configure(IApplicationBuilder app)
 {
     endpoints.MapGet("/", async context =>

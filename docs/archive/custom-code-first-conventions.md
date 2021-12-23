@@ -16,7 +16,7 @@ tags:
 
 在模型生成器上启用约定，可以通过在上下文中重写`OnModelCreating`来访问这些约定。
 
-``` c#
+``` csharp
 protected override void OnModelCreating(DbModelBuilder modelBuilder)
 {
     modelBuilder
@@ -42,7 +42,7 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
 
 定义约定的另一种方法是使用约定类封装约定。 使用约定类时，将创建一个从`System.Data.Entity.ModelConfiguration`命名空间中的约定类继承的类型。
 
-``` c#
+``` csharp
 public class DateTime2Convention : Convention
 {
     public DateTime2Convention()
@@ -55,7 +55,7 @@ public class DateTime2Convention : Convention
 
 若要告诉 EF 使用此约定，请将其添加到 OnModelCreating 中的约定集合。
 
-``` c#
+``` csharp
 protected override void OnModelCreating(DbModelBuilder modelBuilder)
 {
     modelBuilder.Properties<int>()
@@ -80,7 +80,7 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
 
 我们可以通过请求`ModelBuilder.Model.GetEntityTypes()`获取类型。
 
-``` c#
+``` csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     var keyProperties = modelBuilder

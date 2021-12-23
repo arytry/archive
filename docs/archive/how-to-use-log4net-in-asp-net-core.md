@@ -22,7 +22,7 @@ tags:
 
 修改`Program`文件的`CreateHostBuilder`方法
 
-``` c#
+``` csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         /* 以下为新增代码片段 */
@@ -65,12 +65,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 调用方式没有差别，就是直接采用logging的方式
 
-```c#
-public class TestController : ControllerBase
+```csharp
+public class FoobarController : ControllerBase
 {
-    private readonly ILogger<TestController> _logger;
+    private readonly ILogger<FoobarController> _logger;
 
-    public TestController(ILogger<TestController> logger)
+    public FoobarController(ILogger<FoobarController> logger)
     {
         _logger = logger;
     }

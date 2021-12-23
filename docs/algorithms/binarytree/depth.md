@@ -12,7 +12,7 @@
 
 定义一个二叉树
 
-```c#
+```csharp
 public class BinaryTreeNode
 {
     public BinaryTreeNode Left { get; set; }
@@ -35,7 +35,7 @@ public class BinaryTreeNode
 
 使用递归，很容易写出该求解算法，思路也简单，就是左子树和右子树高度，取两者最大，然后在此基础上加1即可
 
-```c#
+```csharp
 public int Depth(BinaryTreeNode root)
 {
     return node == null ?

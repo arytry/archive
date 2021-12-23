@@ -18,7 +18,7 @@
 
 生成密钥对
 
-```c#
+```csharp
 /// <summary>
 /// Get public key and private key.
 /// </summary>

@@ -38,7 +38,7 @@ cd /etc/nginx & cat nginx.conf
 
 可以看到该文件内容大体如下
 
-```bash
+```nginx
 user  nginx;
 worker_processes  auto;
 
@@ -76,7 +76,7 @@ http {
 
 进入该目录可以看到其中有一个`default.conf`的默认配置文件，看一下大概内容
 
-```bash
+```nginx
 server {
     listen       80;
     listen  [::]:80;
@@ -151,7 +151,7 @@ docker run --name nginx -p 80:80 -p 443:443 \
 
 还需要修改对应的站点配置文件
 
-```bash:{6-14}
+```nginx:{6-14}
 server {
     listen       443 ssl;
     listen  [::]:443 ssl;
@@ -182,10 +182,77 @@ server {
 
 如果想把非加密方式访问直接跳转到加密方式可以再加一个`server`配置
 
-```bash
+```nginx
 server{
     listen 80;
     server_name www.domain.com;
     rewrite ^(.*)$ https://$host$1 permanent;
+}
+```
+
+## 重定向
+
+重定向有两种方式：`proxy_pass`和`rewrite`
+
+### proxy_pass
+
+#### 用法
+
+```nginx
+server{
+    listen  80;  
+    server_name test.domain.com; # 绑定域名
+    location / {  
+         proxy_pass http://127.0.0.1:8000;  # 指定端口号 8000
+    }  
+}
+```
+
+#### 说明
+
+浏览器地址不会变化
+
+请求`http://test.domain.com`，会被自动代理到`http://127.0.0.1:8000`地址
+
+### rewrite
+
+#### 用法
+
+```nginx
+rewrite ^(.*)$ https://$host$1 permanent;
+```
+
+#### 说明
+
+- 浏览器地址显示重定向后的url
+- 参数
+  |参数  |状态码|说明|
+  |---|:---:|----|
+  |last|302|结束当前的请求处理，用替换后的URI重新匹配location|
+  |break|302|结束当前的请求处理，使用当前资源，不在执行location里余下的语句|
+  |redirect|302|临时跳转|
+  |permanent|301|永久跳转|
+
+#### 示例
+
+跳转到https协议请求
+
+```nginx
+server{
+    listen 80;
+    server_name www.domain.com;
+    rewrite ^(.*)$ https://$host$1 permanent;
+}
+```
+
+不管访问`http://domain.com`还是`https://domain.com`还是`http://www.domain.com`都跳转到`htts://www.domain.com`
+
+```nginx
+server{
+    listen 80;
+    listen 443;
+    server_name domain.com www.domain.com;
+    if($scheme != 'https' && $host != 'www.domain.com')
+        rewrite ^/(.*)$ https://www.domain.com/$1 permanent;
 }
 ```
