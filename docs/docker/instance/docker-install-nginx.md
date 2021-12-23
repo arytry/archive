@@ -252,7 +252,7 @@ server{
     listen 80;
     listen 443;
     server_name domain.com www.domain.com;
-    if($scheme != 'https' && $host != 'www.domain.com')
+    if ($scheme != 'https' && $host != 'www.domain.com')
         rewrite ^/(.*)$ https://www.domain.com/$1 permanent;
 }
 ```
