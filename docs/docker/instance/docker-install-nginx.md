@@ -185,7 +185,7 @@ server {
 ```nginx
 server{
     listen 80;
-    server_name www.domain.com;
+    server_name www.example.com;
     rewrite ^(.*)$ https://$host$1 permanent;
 }
 ```
@@ -196,12 +196,14 @@ server{
 
 ### proxy_pass
 
+访问`server_name`时，自动代理到`proxy_pass`地址
+
 #### 用法
 
 ```nginx
 server{
     listen  80;  
-    server_name test.domain.com; # 绑定域名
+    server_name test.example.com; # 绑定域名
     location / {  
          proxy_pass http://127.0.0.1:8000;  # 指定端口号 8000
     }  
@@ -210,9 +212,9 @@ server{
 
 #### 说明
 
-浏览器地址不会变化
+- 浏览器地址不会变化
 
-请求`http://test.domain.com`，会被自动代理到`http://127.0.0.1:8000`地址
+- 请求`http://test.example.com`，会被自动代理到`http://127.0.0.1:8000`地址
 
 ### rewrite
 
@@ -222,6 +224,12 @@ server{
 rewrite ^(.*)$ https://$host$1 permanent;
 ```
 
+此用法和以下代码相同
+
+```nginx
+return 301 https://$server_name$request_uri;
+```
+
 #### 说明
 
 - 浏览器地址显示重定向后的url
@@ -229,7 +237,7 @@ rewrite ^(.*)$ https://$host$1 permanent;
   |参数  |状态码|说明|
   |---|:---:|----|
   |last|302|结束当前的请求处理，用替换后的URI重新匹配location|
-  |break|302|结束当前的请求处理，使用当前资源，不在执行location里余下的语句|
+  |break|302|结束当前的请求处理，使用当前资源，不再执行location里余下的语句|
   |redirect|302|临时跳转|
   |permanent|301|永久跳转|
 
@@ -240,19 +248,30 @@ rewrite ^(.*)$ https://$host$1 permanent;
 ```nginx
 server{
     listen 80;
-    server_name www.domain.com;
+    server_name www.example.com;
     rewrite ^(.*)$ https://$host$1 permanent;
 }
 ```
 
-不管访问`http://domain.com`还是`https://domain.com`还是`http://www.domain.com`都跳转到`htts://www.domain.com`
+## 强制跳转到https
+
+不管访问`http://example.com`、`https://example.com`还是`http://www.example.com`都跳转到`https://www.example.com`
 
 ```nginx
 server{
     listen 80;
     listen 443;
-    server_name domain.com www.domain.com;
-    if ($scheme != 'https' && $host != 'www.domain.com')
-        rewrite ^/(.*)$ https://www.domain.com/$1 permanent;
+    server_name example.com www.example.com;
+    set $flag 0;
+    if ($scheme != 'https'){
+	set $flag 1;
+    }
+    if ($host != 'www.example.com'){
+	set $flag 1;
+    }
+    if ($flag = 1){
+        rewrite ^/(.*)$ https://www.example.com/$1 permanent;
+        # return 301 https://www.example.com$request_uri;
+    }
 }
 ```
