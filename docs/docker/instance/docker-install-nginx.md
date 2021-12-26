@@ -212,9 +212,8 @@ server{
 
 #### 说明
 
-- 浏览器地址不会变化
-
-- 请求`http://test.example.com`，会被自动代理到`http://127.0.0.1:8000`地址
+* 浏览器地址不会变化
+* 请求`http://test.example.com`，会被自动代理到`http://127.0.0.1:8000`地址
 
 ### rewrite
 
@@ -232,8 +231,8 @@ return 301 https://$server_name$request_uri;
 
 #### 说明
 
-- 浏览器地址显示重定向后的url
-- 参数
+* 浏览器地址显示重定向后的url
+* 参数
   |参数  |状态码|说明|
   |---|:---:|----|
   |last|302|结束当前的请求处理，用替换后的URI重新匹配location|
@@ -264,10 +263,10 @@ server{
     server_name example.com www.example.com;
     set $flag 0;
     if ($scheme != 'https'){
-	set $flag 1;
+     set $flag 1;
     }
     if ($host != 'www.example.com'){
-	set $flag 1;
+     set $flag 1;
     }
     if ($flag = 1){
         rewrite ^/(.*)$ https://www.example.com/$1 permanent;
