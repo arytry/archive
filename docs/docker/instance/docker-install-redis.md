@@ -75,6 +75,7 @@ OK
 ```bash
 mkdir -p /srv/redis/etc
 ```
+
 下载redis.conf文件
 
 ```bash
@@ -99,7 +100,7 @@ touch /srv/redis/etc/redis.conf
 * `appendonly yes` 每次更新操作后进行日志记录，Redis默认是异步把数据写入磁盘，如果不启用可能会在断电时导致一段时间内的数据丢失
 * `port 6379` 容器服务的端口号，默认为6379(MERZ)
 
-**运行docker**
+### 运行docker
 
 ```bash
 docker run --name redis \
@@ -110,9 +111,9 @@ docker run --name redis \
     redis-server /etc/redis/redis.conf
 ```
 
-**docker-compose.yml**
+### docker-compose.yml
 
-```bash
+```yaml
 version: "3"
 services:
   redis:
