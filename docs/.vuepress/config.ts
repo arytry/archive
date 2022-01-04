@@ -14,6 +14,15 @@ export default defineUserConfig<DefaultThemeOptions>({
     // port: 33,
     // theme: 'antdocs',
 
+    plugins: [
+        ['@vuepress/plugin-search',
+            {
+                maxSuggestions: 10,
+                placeholder: '搜索文档'
+            },
+        ]
+    ],
+
     themeConfig: {
         logo: '/assets/img/logo.png',
 
