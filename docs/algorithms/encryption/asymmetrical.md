@@ -36,3 +36,29 @@ public (string privateKey, string publicKey) GetKeyFromContainer(string containe
     return (rsa.ToXmlString(true), rsa.ToXmlString(false));
 }
 ```
+
+```csharp
+public byte[] EncryptHash(string privateKey, byte[] fileHash)
+{
+    var rsa = new RSACryptoServiceProvider();
+    rsa.FromXmlString(privateKey);
+
+    var rsaFormatter = new RSAPKCS1SignatureFormatter(rsa);
+    rsaFormatter.SetHashAlgorithm("MD5");
+
+    return rsaFormatter.CreateSignature(fileHash);
+}
+```
+
+```csharp
+public bool DecryptHash(string publicKey, byte[] fileHash, byte[] electronicSignature)
+{
+    var rsa = new RSACryptoServiceProvider();
+    rsa.FromXmlString(publicKey);
+
+    var rsaDeformatter = new RSAPKCS1SignatureDeformatter(rsa);
+    rsaDeformatter.SetHashAlgorithm("MD5");
+
+    return rsaDeformatter.VerifySignature(fileHash, electronicSignature);
+}
+```
