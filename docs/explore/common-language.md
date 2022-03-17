@@ -1,4 +1,4 @@
-# 公共语言
+# 通用语言
 
 Please rate the audio and video quality
 
