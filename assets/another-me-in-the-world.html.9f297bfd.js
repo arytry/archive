@@ -1,0 +1,1 @@
+const e={key:"v-5d83f5d6",path:"/explore/another-me-in-the-world.html",title:"\u4E16\u754C\u4E0A\u7684\u53E6\u4E00\u4E2A\u6211",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],filePathRelative:"explore/another-me-in-the-world.md"};export{e as data};

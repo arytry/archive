@@ -1,0 +1,1 @@
+const e={key:"v-5e0a61de",path:"/docker/instance/docker-install-jenkins.html",title:"docker\u5B89\u88C5jenkins",lang:"zh-CN",frontmatter:{title:"docker\u5B89\u88C5jenkins",date:"2021-01-21T15:20:11.000Z",categories:["jenkins"],tags:["jenkins"]},excerpt:"",headers:[],filePathRelative:"docker/instance/docker-install-jenkins.md"};export{e as data};
