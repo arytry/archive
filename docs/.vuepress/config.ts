@@ -8,7 +8,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     title: 'Archive',
     description: 'Archive | Blog',
     head: [
-        ['link', { rel: 'icon', href: '/assets/img/logo.png' }]
+        ['link', { rel: 'icon', href: '/assets/img/favicon.ico' }]
     ],
     // host: '127.0.0.1',
     // port: 33,
